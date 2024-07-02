@@ -1,0 +1,34 @@
+﻿1. function storeProvision(currStock, order){
+2.    
+3. let currStockObj = convertToObj(currStock);
+4. let orderObj = convertToObj(order);
+5. let keyStockList = Object.keys(currStockObj);
+6. let outputObj = outputList(currStockObj, orderObj, keyStockList);
+7.  
+8. let outputStockList = Object.entries(outputObj);
+9. for (const [product, quantity] of outputStockList) {
+10.     console.log(`${product} -> ${quantity}`);
+11. }
+12.  
+13. function convertToObj(arr){
+14.     let obj = {};
+15.     for(let i = 0;i < arr.length; i+=2){
+16.         obj[arr[i]] = Number(arr[i+1]);
+17.     }
+18.     return obj;
+19. }
+20. function outputList(obj1, obj2, list) {
+21.     for (const key in obj2) {
+22.         if (key in obj1) {
+23.             obj1[key] += obj2[key];
+24.         } else {
+25.             obj1[key] = obj2[key];
+26.             list.push(key);
+27.         }
+28.     }
+29.     return obj1;
+30. }
+31.  
+32. }
+33. //storeProvision(['Chips', '5', 'CocaCola', '9', 'Bananas','14', 'Pasta', '4', 'Beer', '2'], ['Flour', '44', 'Oil', '12', 'Pasta', '7', 'Tomatoes', '70', 'Bananas', '30']);
+34. storeProvision(['Salt', '2', 'Fanta', '4', 'Apple', '14', 'Water', '4', 'Juice', '5'], [ 'Sugar', '44', 'Oil', '12', 'Apple', '7', 'Tomatoes', '7', 'Bananas', '30' ]);
